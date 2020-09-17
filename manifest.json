@@ -1,24 +1,24 @@
 {
-  "name": "Moodle Extender",
-  "description" : "Base Level Extension",
+  "name": "LETUS Utilities",
+  "description" : "LETUSのコースを非表示にします。",
   "version": "1.0",
   "manifest_version": 2,
   "browser_action": {
     "default_popup": "ex.html",
-    "default_icon": "favicon.ico"
+    "default_icon": "favicon.png"
   },
-  "permissions": ["declarativeContent", "storage"],
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
-  "commands": {
-    "_execute_browser_action": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+F",
-        "mac": "MacCtrl+Shift+F"
-      },
-      "description": "Opens hello.html"
+  "permissions": ["activeTab","declarativeContent", "storage","tabs"],
+  "content_scripts": [
+    {
+        "matches": [ "https://letus.ed.tus.ac.jp/*" ],
+        "js": ["js/jquery.js", "js/execute.js" ]
     }
-  }
+],
+"background": {
+  "persistent": false,
+  "scripts": ["js/jquery.js", "js/background.js"]
+},
+"web_accessible_resources":[
+  "close-thick.png"
+]
 }
